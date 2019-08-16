@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+
+<h2 style="text-align:center">Product Details</h2>
+
+<div class="card">
+  <!----img id="pImg" src="" alt="no image" style="width:100%"/-->
+  <h1 id="pName"></h1>
+  <p class="price" id="PBrand"></p>
+  <p class="price" id="pPrice"></p>
+  <p id="pDetails"></p>
+  <p><button>Add to Cart</button></p>
+</div>
+<script type="text/javascript">
+	
+	//  alert(location.search);
+	var data=location.search.split('&&');
+	//console.log(data);
+	
+	document.getElementById("pName").innerHTML=data[0].split('=')[1].replace(new RegExp('%20','g'),' ')  ;
+	//document.getElementById("#pColor").innerHTML= data[1].split('=')[1] ;
+	document.getElementById("PBrand").innerHTML= data[3].split('=')[1].replace(new RegExp('%20','g'),' ') ;
+	document.getElementById("pPrice").innerHTML= data[2].split('=')[1]+"$" ;
+	document.getElementById("pDetails").innerHTML= data[4].split('=')[1].replace(new RegExp('%20','g'),' ') ;
+	//document.getElementById("#pQuantity").innerHTML= data[6].split('=')[1] ;
+	//document.getElementById("#pWeight").innerHTML= data[5].split('=')[1] ;
+	//document.getElementById("pImg").src="http://localhost:5000/uploads/"+data[7].split('=')[1];
+
+  var url ="http://localhost:5000/uploads/"+data[7].split('=')[1];
+
+  console.log(url);
+  
+	</script>
+</body>
+</html>
+
+
+

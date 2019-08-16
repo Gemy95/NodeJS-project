@@ -1,0 +1,8 @@
+
+use MyDatabase;
+
+db.userInfo.insert({"username" : "ali","password" : "123"}) ;
+
+db.userInfo.insert({"username" : "mohamed","password" : "123"}) ;
+
+db.userInfo.insert({"username" : "hany","password" : "abc"}) ;

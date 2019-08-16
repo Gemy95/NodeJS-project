@@ -1,0 +1,144 @@
+<html>
+	<head>
+		<title>Client Side</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">	
+	<script src="node_modules/socket.io-client/dist/socket.io.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>  
+	<script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script> 
+			
+	  
+	</head>
+	<body>
+		<div class="container">
+			<div id="mydiv" class="row" style="padding-top: 10px">
+		<script>
+			var isBuy=false;
+		function connectToServer(){
+			$('#mydiv').html("");
+			$('#mydiv').append(`
+	  <table class="table table-striped table-bordered" id="summary-table" style="width:100%">
+      <thead>
+      <tr > 
+      <th> Num. </th>
+      <th> Name </th>
+      <th> Color </th>
+      <th> Price </th>
+      <th> Brand </th>
+      <th> Details </th>
+      <th> Model </th>
+      <th> Weight </th>
+      <th> Quantity </th>
+      <th> Show </th>
+      <th> Buy </th>
+      </tr>
+        </thead>
+        <tbody>
+        </tbody>
+	</table>
+				  `);
+
+			var socket = io.connect('http://localhost:5000');
+			
+			socket.on("message_from_server",function(data)
+			{
+			//	console.log(data.msg);
+		
+				  $.each(data.msg, function(i, res) {
+					var objProduct={
+					"name":res.name,
+					"color":res.color,"price":res.price,"details":res.details,
+					"model":res.model,"weight":res.weight
+         				};
+
+                  var body = `<tr id='${res.name}'>`;
+                  body    += "<td>" + (i+1) + "</td>";
+                  body    += `<td id='product${i+1}'>` + res.name + "</td>";
+                  body    += "<td>" + res.color + "</td>";
+                  body    += "<td>" + res.price + "</td>";
+                  body    += "<td>" + res.brand + "</td>";
+                  body    += "<td>" + res.details + "</td>";
+                  body    += "<td>" + res.model + "</td>";
+                  body    += "<td>" + res.weight + "</td>";
+                  body    += `<td id='${res.name}Q'>` + res.quantity + "</td>";
+				  body    += "<td>" + `<button class='btn btn-danger' onClick="showDetails('${res.name}',
+					'${res.color}','${res.price}','${res.brand}','${res.details}','${res.model}',
+					'${res.weight}','${res.quantity}','${res.imgUrl}'
+					)">ShowDetails</button>` + "</td>";
+				  
+				  body    += "<td>" +
+					 `<button class='btn btn-success' onClick="buy('${res.name}')">Buy</button>`
+					 + "</td>";
+
+                  body    += "</tr>";
+                  $( "#summary-table tbody" ).append(body);
+				  
+				  });
+				  $( "#summary-table" ).DataTable();
+
+			});
+
+
+			socket.on("server replay on buy",function(data){
+					//console.log(data.name);
+					//console.log(parseInt(data.quantity)==0);
+						
+					if(parseInt(data.quantity)==0)
+						{
+							document.getElementById(data.name).style.display="none";
+							//console.log('none');
+						} 
+						else
+						{
+							document.getElementById(data.name+"Q").innerHTML=data.quantity;
+							//console.log('quantity not 0');
+						}
+					
+				
+			});
+
+			
+           
+			
+					
+		}
+
+
+		function buy(data)
+		{ 
+			var socket = io.connect('http://localhost:5000');
+			socket.emit("client buy",{msg:data});
+			//alert(data);
+		}
+
+		function showDetails(name,color,price,brand,details,model,weight,quantity,imgUrl)
+		{ 
+			/*
+			var obj={"name" :name ,"price": price ,"color ":color,
+			"quantity":quantity,"details":details};
+            */
+
+			window.open('F:/ITI/Express/project/details.html?'+
+			"name="+name+"&&color="+color+"&&price="+price+"&&brand="+brand+"&&details="+details+
+			"&&weight="+weight+"&&quantity="+quantity+"&&imgUrl="+imgUrl
+			,"_blank");
+
+		}
+
+</script>
+</div>
+<br>
+<button class="btn btn-primary"  onclick="connectToServer()">Connect</button>
+<br>
+</div>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+
+use testDB;
+
+db.product.insert({_id:1,name:"lsebells stage hat",brand:"cazary",model:2015,color:"green",price:25,
+
+    details:"beautiful hat",weight:50,quantity:20,imgUrl:''});
+
+
+
+db.product.insert({_id:2,name:"fortuna hat",brand:"first man",model:2016,color:"red",price:20,
+
+    details:"beautiful hat",weight:61,quantity:50,imgUrl:''});
+
+
+
+db.product.insert({_id:3,name:"marleys helmet",brand:"master jeans",model:2014,color:"green",price:25,
+
+    details:"beautiful hat",weight:40,quantity:30,imgUrl:''});
+
+
+
+db.product.insert({_id:4,name:"winter beanie",brand:"first man",model:2015,color:"pink",price:21,
+
+    details:"beautiful hat",weight:30,quantity:40,imgUrl:''});
+
+
+
+db.product.insert({_id:5,name:"agnethas hat",brand:"master jeans",model:2013,color:"yellow",price:30,
+
+    details:"beautiful hat",weight:20,quantity:90,imgUrl:''});
+
+
+
+db.product.insert({_id:6,name:"suede helmet",brand:"vanse",model:2012,color:"black",price:15,
+
+    details:"beautiful hat",weight:60,quantity:80,imgUrl:''});
+
+
+
+db.product.insert({_id:7,name:"james cap",brand:"city mole",model:2010,color:"brown",price:45,
+
+    details:"beautiful hat",weight:20,quantity:90,imgUrl:''});
+
+
+
+db.product.insert({_id:8,name:"juras winter beanie",brand:"cazary",model:2011,color:"orange",price:50,
+
+    details:"beautiful hat",weight:25,quantity:10,imgUrl:''});
+
+
+
+db.product.insert({_id:9,name:"mississippi jones hat",brand:"first man",model:2010,color:"white",price:29,
+
+    details:"beautiful hat",weight:35,quantity:50,imgUrl:''});
+
+
+
+db.product.insert({_id:10,name:"garden helmet",brand:"vanse",model:2013,color:"red",price:42,
+
+    details:"beautiful hat",weight:45,quantity:30,imgUrl:''});
+
+
+
+db.product.insert({_id:11,name:"nice helmet",brand:"master jeans",model:2019,color:"blue",price:44,
+
+    details:"beautiful hat",weight:15,quantity:100,imgUrl:''});
+
+
+
+db.product.insert({_id:12,name:"chefs hat",brand:"first man",model:2017,color:"yellow",price:22,
+
+    details:"beautiful hat",weight:35,quantity:80,imgUrl:''});
+
+
+
+db.product.insert({_id:13,name:"jennas helmet",brand:"vanse",model:2016,color:"green",price:33,
+
+    details:"beautiful hat",weight:22,quantity:90,imgUrl:''});
+
+
+
+db.product.insert({_id:14,name:"carly hat",brand:"vanse",model:2017,color:"cafe",price:19,
+
+    details:"beautiful hat",weight:33,quantity:60,imgUrl:''});
+
+
+
+
+
+db.product.insert({_id:15,name:"harly hat",brand:"cazary",model:2019,color:"orange",price:11,
+
+    details:"beautiful hat",weight:44,quantity:20,imgUrl:''});
