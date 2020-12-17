@@ -19,7 +19,7 @@
     "connect-ensure-login": "^0.1.1",
     "connect-ensure-login-provider": "^0.1.3",
     "cors": "^2.8.5",
-    "datatables.net": "^1.10.19",
+    "datatables.net": "^1.10.22",
     "datatables.net-dt": "^1.10.19",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
